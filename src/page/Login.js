@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import "./Login.css";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { login, selectUser } from "../redux/userSlice";
+import { login, selectUser, clearState } from "../redux/userSlice";
 
 const Login = () => {
   const [userEmail, setUserEmail] = React.useState("");
@@ -19,13 +19,6 @@ const Login = () => {
     dispatch(login({ email: userEmail, password: passWord }));
   };
 
-  useEffect(() => {
-    if (isSuccess) {
-      navigate("/board");
-    }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [isSuccess]);
-
   if (disabled === true) {
     if (userEmail !== "" && passWord !== "") {
       setDisabled(false);
@@ -35,6 +28,21 @@ const Login = () => {
       setDisabled(true);
     }
   }
+
+  useEffect(() => {
+    if (isSuccess) {
+      navigate("/board");
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [isSuccess]);
+
+  useEffect(() => {
+    return () => {
+      dispatch(clearState());
+    };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
   return (
     <div id="login">
       <form
@@ -44,7 +52,7 @@ const Login = () => {
         }}
       >
         <a href="/" className="pre-page">
-          <i class="fa-solid fa-arrow-left"></i>
+          <i className="fa-solid fa-arrow-left"></i>
         </a>
 
         <h1>Login</h1>
@@ -57,7 +65,7 @@ const Login = () => {
             }}
             required
           />
-          <div className="placeholder">EMAIL</div>
+          <div className="placeholder">Email</div>
         </div>
 
         <div className="textb">

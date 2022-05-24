@@ -10,20 +10,23 @@ import Login from "./page/Login";
 import Register from "./page/Register";
 import Board from "./page/Board";
 import "./App.css";
+import { useSelector } from "react-redux";
+import { selectUser } from "./redux/userSlice";
 
 const App = () => {
-  const token = localStorage.getItem("token");
+  const { token } = useSelector(selectUser);
+  const tokenCheck = localStorage.getItem("token");
   return (
     <Router>
       <Routes>
+        {token === "" && tokenCheck === null ? (
+          <Route path="*" element={<Navigate to="/login" replace />} />
+        ) : (
+          <Route path="/board" element={<Board />} />
+        )}
         <Route path="/" element={<Home />} />
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
-        {token ? (
-          <Route path="/board" element={<Board />} />
-        ) : (
-          <Route path="*" element={<Navigate to="/login" replace />} />
-        )}
       </Routes>
     </Router>
   );

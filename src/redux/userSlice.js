@@ -17,7 +17,7 @@ export const login = createAsyncThunk(
       });
       let data = await response.json();
       if (response.status === 200) {
-        localStorage.setItem("token", response.headers.get("token"));
+        localStorage.setItem("token", data.result.token);
         return data;
       } else {
         throw data.message;
@@ -28,34 +28,40 @@ export const login = createAsyncThunk(
   }
 );
 
-export const logout = createAsyncThunk("user/logout", async (thunkAPI) => {
-  try {
-    const token = localStorage.getItem("token");
-    const response = await fetch(
-      "https://5089-211-72-239-241.ngrok.io/api/logout",
-      {
-        method: "GET",
+export const register = createAsyncThunk(
+  "user/register",
+  async ({ name, email, password }, thunkAPI) => {
+    try {
+      const response = await fetch("http://localhost:3000/register", {
+        method: "POST",
         headers: {
           Accept: "application/json",
           "Content-Type": "application/json",
-          token,
         },
+        body: JSON.stringify({
+          name,
+          email,
+          password,
+        }),
+      });
+      let data = await response.json();
+      if (response.status === 200) {
+        localStorage.setItem("token", data.token);
+        return data;
+      } else {
+        throw data.message;
       }
-    );
-    let data = await response.json();
-    if (response.status === 200) {
-      return data;
-    } else {
-      throw data.message;
+    } catch (e) {
+      return thunkAPI.rejectWithValue(e);
     }
-  } catch (e) {
-    return thunkAPI.rejectWithValue(e);
   }
-});
+);
 
 export const userSlice = createSlice({
   name: "user",
   initialState: {
+    token: "",
+    messageList: [],
     isFetching: false,
     isSuccess: false,
     isError: false,
@@ -78,6 +84,7 @@ export const userSlice = createSlice({
     [login.fulfilled]: (state, { payload }) => {
       state.isFetching = false;
       state.isSuccess = true;
+      state.token = payload.result.token;
       return state;
     },
     [login.pending]: (state) => {
@@ -85,6 +92,21 @@ export const userSlice = createSlice({
       return state;
     },
     [login.rejected]: (state, { payload }) => {
+      state.isFetching = false;
+      state.isError = true;
+      return state;
+    },
+    [register.fulfilled]: (state, { payload }) => {
+      state.isFetching = false;
+      state.isSuccess = true;
+      state.token = payload.token;
+      return state;
+    },
+    [register.pending]: (state) => {
+      state.isFetching = true;
+      return state;
+    },
+    [register.rejected]: (state, { payload }) => {
       state.isFetching = false;
       state.isError = true;
       return state;
