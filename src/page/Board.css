@@ -1,5 +1,7 @@
-button{
-    width: 200px;
-    height:90px;
-    background-color:burlywood
+#board {
+  height: 100vh;
+  min-height: 500px;
+  background: url(../assets/mb-bg.jpg) no-repeat center;
+  background-size: cover;
+  background-attachment: fixed;
 }
