@@ -1,6 +1,6 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 
-export const allmsg = createAsyncThunk("msg/all", async (thunkAPI) => {
+export const allMsg = createAsyncThunk("msg/all", async (thunkAPI) => {
   try {
     const response = await fetch("http://localhost:3000/message", {
       method: "GET",
@@ -44,17 +44,17 @@ export const msgSlice = createSlice({
     },
   },
   extraReducers: {
-    [allmsg.fulfilled]: (state, { payload }) => {
+    [allMsg.fulfilled]: (state, { payload }) => {
       state.isFetching = false;
       state.isSuccess = true;
       state.messageList = payload.result;
       return state;
     },
-    [allmsg.pending]: (state) => {
+    [allMsg.pending]: (state) => {
       state.isFetching = true;
       return state;
     },
-    [allmsg.rejected]: (state, { payload }) => {
+    [allMsg.rejected]: (state, { payload }) => {
       state.isFetching = false;
       state.isError = true;
       return state;
