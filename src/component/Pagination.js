@@ -20,14 +20,21 @@ const Pagination = (props) => {
 
   return (
     <Stack spacing={2}>
-      <Typography>
+      <Typography component={"span"}>
         <MessageGrid
           data={props.data}
           page={page}
           messageCount={messageCount}
         ></MessageGrid>
       </Typography>
-      <Paginate count={count} page={page} onChange={handleChange} />
+      <div className="paginate">
+        <Paginate
+          count={count}
+          page={page}
+          onChange={handleChange}
+          classes={{}}
+        />
+      </div>
     </Stack>
   );
 };

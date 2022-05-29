@@ -1,7 +1,93 @@
-/* #board {
+#board{
+	padding: 0;
+	margin: 0;
+	box-sizing: border-box;
+  font-family: 'Poppins', sans-serif;
+}
+#board .hero{
   height: 100vh;
-  min-height: 500px;
-  background: url(../assets/mb-bg.jpg) no-repeat center;
-  background-size: cover;
-  background-attachment: fixed;
-} */
+  width: 100%;
+  background: white;
+}
+#board nav{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-right: 2%;
+  padding-left: 4%;
+  height:50px;
+}
+#board .logo{
+  color: #262728;
+  font-size: 35px;
+  letter-spacing: 1px;
+  cursor: pointer;
+}
+#board nav ul{
+  flex: 1;
+  text-align: right;
+}
+#board nav ul .li{
+  list-style: none;
+  display: inline-block;
+  padding: 0px 25px;
+}
+#board nav ul .li a{
+  color: #262728;
+  text-decoration: none;
+  font-size: 15px;
+  font-weight: bold;
+}
+#board nav ul .li a:hover{
+  color: #00bf9f;
+  transition: .3s;
+} 
+#board header{
+  width: 92%;
+  margin: 0 auto;
+  padding: 13px 0;
+  position: absolute;
+  top: 40px;
+  left: 30px;
+  right: 30px;
+  border-radius: 50px;
+  z-index: 2;
+  background: white;
+  box-shadow: 0 0 30px rgb(0 0 0 / 8%);
+}
+#board .bg{
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 45%;
+  height: 100%;
+  overflow: hidden
+}
+#board .content{
+  position: absolute;
+  top: 50%;
+  left: 45%;
+  margin: 55px 0 0 30px;
+  transform: translateY(-50%);
+}
+#board .content h1{
+  font-size: 85px;
+  color: #262728;
+  line-height: 110px;
+  margin-bottom: 25px;
+}
+#board .content h3{
+  color: #00bf9f;
+  font-size: 18px;
+  letter-spacing: 1px;
+  margin-bottom: 20px;
+}
+#board .content p{
+  font-size: 14px;
+  color: #585858;
+  line-height: 28px;
+  margin-bottom: 30px;
+}
+#board img{
+  height: 100%;
+}

@@ -22,6 +22,82 @@ export const allMsg = createAsyncThunk("msg/all", async (thunkAPI) => {
   }
 });
 
+export const addMsg = createAsyncThunk("msg/add", async (thunkAPI) => {
+  try {
+    const token = localStorage.getItem("token");
+    const response = await fetch("http://localhost:3000/message/add", {
+      method: "PATCH",
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json",
+        token,
+      },
+      body: JSON.stringify({
+        name: "ffa",
+        message: "123444d",
+        time: "2022-05-28 17:36:22",
+      }),
+    });
+    let data = await response.json();
+    if (response.status === 200) {
+      return data;
+    } else {
+      throw data.message;
+    }
+  } catch (e) {
+    return thunkAPI.rejectWithValue(e);
+  }
+});
+
+export const delMsg = createAsyncThunk("msg/del", async (thunkAPI) => {
+  try {
+    const token = localStorage.getItem("token");
+    const response = await fetch("http://localhost:3000/message/delete", {
+      method: "DELETE",
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json",
+        token,
+        id: 10,
+      },
+    });
+    let data = await response.json();
+    if (response.status === 200) {
+      return data;
+    } else {
+      throw data.message;
+    }
+  } catch (e) {
+    return thunkAPI.rejectWithValue(e);
+  }
+});
+
+export const renewMsg = createAsyncThunk("msg/renew", async (thunkAPI) => {
+  try {
+    const token = localStorage.getItem("token");
+    const response = await fetch("http://localhost:3000/message/update", {
+      method: "PUT",
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json",
+        token,
+        id: 10,
+      },
+      body: {
+        message: "GGGGGGGGGGGGG",
+        time: "2022-06-28 17:36:22",
+      },
+    });
+    let data = await response.json();
+    if (response.status === 200) {
+      return data;
+    } else {
+      throw data.message;
+    }
+  } catch (e) {
+    return thunkAPI.rejectWithValue(e);
+  }
+});
 export const msgSlice = createSlice({
   name: "msg",
   initialState: {
@@ -57,6 +133,48 @@ export const msgSlice = createSlice({
       return state;
     },
     [allMsg.rejected]: (state, { payload }) => {
+      state.isFetching = false;
+      state.isError = true;
+      return state;
+    },
+    [addMsg.fulfilled]: (state, { payload }) => {
+      state.isFetching = false;
+      state.isSuccess = true;
+      return state;
+    },
+    [addMsg.pending]: (state) => {
+      state.isFetching = true;
+      return state;
+    },
+    [addMsg.rejected]: (state, { payload }) => {
+      state.isFetching = false;
+      state.isError = true;
+      return state;
+    },
+    [delMsg.fulfilled]: (state, { payload }) => {
+      state.isFetching = false;
+      state.isSuccess = true;
+      return state;
+    },
+    [delMsg.pending]: (state) => {
+      state.isFetching = true;
+      return state;
+    },
+    [delMsg.rejected]: (state, { payload }) => {
+      state.isFetching = false;
+      state.isError = true;
+      return state;
+    },
+    [renewMsg.fulfilled]: (state, { payload }) => {
+      state.isFetching = false;
+      state.isSuccess = true;
+      return state;
+    },
+    [renewMsg.pending]: (state) => {
+      state.isFetching = true;
+      return state;
+    },
+    [renewMsg.rejected]: (state, { payload }) => {
       state.isFetching = false;
       state.isError = true;
       return state;
