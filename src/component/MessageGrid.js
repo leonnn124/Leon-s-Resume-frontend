@@ -17,8 +17,8 @@ const StyledPaper = styled(Paper)(({ theme }) => ({
 }));
 
 const MessageGrid = (props) => {
+  // const [messageData, setMessageData] = React.useState([]);
   const messageData = [];
-
   // 設定第 x 頁資料範圍
   let rangeMax = props.page * props.messageCount - 1;
   const rangeMin = (props.page - 1) * props.messageCount;
@@ -28,19 +28,13 @@ const MessageGrid = (props) => {
     rangeMax = rangeMin;
   }
 
-  console.log(rangeMax);
-
-  console.log("max", rangeMax, "min", rangeMin);
-
   for (let i = rangeMin; i <= rangeMax; i++) {
     messageData.push(props.data[i]);
   }
 
-  console.log(messageData);
-
   return (
     <Box sx={{ flexGrow: 1, overflow: "hidden", px: 3 }}>
-      {_.map(messageData, (item, index) => (
+      {/* {_.map(messageData, (item, index) => (
         <StyledPaper
           sx={{
             my: 1,
@@ -60,7 +54,7 @@ const MessageGrid = (props) => {
             </Grid>
           </Grid>
         </StyledPaper>
-      ))}
+      ))} */}
     </Box>
   );
 };

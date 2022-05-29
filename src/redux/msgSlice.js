@@ -2,11 +2,13 @@ import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 
 export const allMsg = createAsyncThunk("msg/all", async (thunkAPI) => {
   try {
+    const token = localStorage.getItem("token");
     const response = await fetch("http://localhost:3000/message", {
       method: "GET",
       headers: {
         Accept: "application/json",
         "Content-Type": "application/json",
+        token,
       },
     });
     let data = await response.json();
