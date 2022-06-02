@@ -1,39 +1,58 @@
-import React from "react";
-import { useDispatch, useSelector } from "react-redux";
-import {
-  allMsg,
-  delMsg,
-  renewMsg,
-  addMsg,
-  selectMsg,
-  clearState,
-} from "../redux/msgSlice";
+import React, { useEffect } from "react";
+import { useDispatch } from "react-redux";
+import { allMsg, addMsg, clearState } from "../redux/msgSlice";
 import Button from "@mui/material/Button";
-import DeleteIcon from "@mui/icons-material/Delete";
 import SendIcon from "@mui/icons-material/Send";
-import Stack from "@mui/material/Stack";
-const AddMessage = () => {
+import Box from "@mui/material/Box";
+import TextField from "@mui/material/TextField";
+import getTime from "../services/date";
+
+const AddMessage = (props) => {
   const dispatch = useDispatch();
-  //   const handleaddMsg = () => {
-  // dispatch(addMsg());
-  // console.log("ok");
-  //   };
-  //   const handledelMsg = () => {
-  //     dispatch(delMsg());
-  //     console.log("ok");
-  //   };
-  //   const handlerenewMsg = () => {
-  //     dispatch(renewMsg());
-  //     console.log("ok");
-  //   };
-  const handleClick = () => {
-    dispatch(addMsg());
-    dispatch(clearState());
+  const [message, setMessage] = React.useState("");
+  const [time, setTime] = React.useState("");
+  const name = localStorage.getItem("member");
+
+  useEffect(() => {
     dispatch(allMsg());
+  }, []);
+
+  useEffect(() => {
+    var timeString = getTime();
+
+    setTime(timeString);
+  }, [message]);
+
+  const handleClick = () => {
+    if (message !== "") {
+      dispatch(addMsg({ name: name, message: message, time: time }));
+      dispatch(clearState());
+      setMessage("");
+      dispatch(allMsg());
+    }
   };
+
   return (
     <div>
+      <Box
+        sx={{
+          margin: "0 20px",
+          width: 450,
+          maxWidth: "100%",
+        }}
+      >
+        <TextField
+          fullWidth
+          id="fullWidth"
+          size="small"
+          value={message}
+          onChange={(e) => {
+            setMessage(e.target.value);
+          }}
+        />
+      </Box>
       <Button
+        sx={{ margin: "0 0 0 40px" }}
         variant="contained"
         endIcon={<SendIcon />}
         onClick={() => handleClick()}

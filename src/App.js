@@ -19,7 +19,7 @@ const App = () => {
   return (
     <Router>
       <Routes>
-        {token !== "" && tokenCheck !== null ? (
+        {token === "" && tokenCheck === null ? (
           <Route path="*" element={<Navigate to="/login" replace />} />
         ) : (
           <Route path="/board" element={<Board />} />

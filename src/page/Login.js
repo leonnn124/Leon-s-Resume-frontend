@@ -42,7 +42,6 @@ const Login = () => {
     };
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
-
   return (
     <div id="login">
       <form

@@ -61,7 +61,7 @@ export const userSlice = createSlice({
   name: "user",
   initialState: {
     token: "",
-    messageList: [],
+    userList: [],
     isFetching: false,
     isSuccess: false,
     isError: false,
@@ -85,6 +85,7 @@ export const userSlice = createSlice({
       state.isFetching = false;
       state.isSuccess = true;
       state.token = payload.result.token;
+      localStorage.setItem("member", payload.result.loginMember);
       return state;
     },
     [login.pending]: (state) => {

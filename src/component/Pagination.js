@@ -1,5 +1,6 @@
-import React from "react";
+import React, { useEffect } from "react";
 import "./Pagination.css";
+import { styled } from "@mui/material/styles";
 import Typography from "@mui/material/Typography";
 import Paginate from "@mui/material/Pagination";
 import Stack from "@mui/material/Stack";
@@ -18,9 +19,14 @@ const Pagination = (props) => {
   //取得資料長度 並整除 決定共有幾頁
   const count = Math.ceil(props.data.length / messageCount);
 
+  const CssPaginate = styled(Paginate)({
+    "& .css-wjh20t-MuiPagination-ul": {
+      margin: "-25px auto 0 auto",
+    },
+  });
   return (
-    <Stack spacing={2}>
-      <Typography component={"span"}>
+    <Stack spacing={2} sx={{ height: "520px" }}>
+      <Typography component={"span"} sx={{ height: "100%" }}>
         <MessageGrid
           data={props.data}
           page={page}
@@ -28,12 +34,7 @@ const Pagination = (props) => {
         ></MessageGrid>
       </Typography>
       <div className="paginate">
-        <Paginate
-          count={count}
-          page={page}
-          onChange={handleChange}
-          classes={{}}
-        />
+        <CssPaginate count={count} page={page} onChange={handleChange} />
       </div>
     </Stack>
   );

@@ -22,32 +22,35 @@ export const allMsg = createAsyncThunk("msg/all", async (thunkAPI) => {
   }
 });
 
-export const addMsg = createAsyncThunk("msg/add", async (thunkAPI) => {
-  try {
-    const token = localStorage.getItem("token");
-    const response = await fetch("http://localhost:3000/message/add", {
-      method: "PATCH",
-      headers: {
-        Accept: "application/json",
-        "Content-Type": "application/json",
-        token,
-      },
-      body: JSON.stringify({
-        name: "ffa",
-        message: "123444d",
-        time: "2022-05-28 17:36:22",
-      }),
-    });
-    let data = await response.json();
-    if (response.status === 200) {
-      return data;
-    } else {
-      throw data.message;
+export const addMsg = createAsyncThunk(
+  "msg/add",
+  async ({ name, message, time }, thunkAPI) => {
+    try {
+      const token = localStorage.getItem("token");
+      const response = await fetch("http://localhost:3000/message/add", {
+        method: "PATCH",
+        headers: {
+          Accept: "application/json",
+          "Content-Type": "application/json",
+          token,
+        },
+        body: JSON.stringify({
+          name,
+          message,
+          time,
+        }),
+      });
+      let data = await response.json();
+      if (response.status === 200) {
+        return data;
+      } else {
+        throw data.message;
+      }
+    } catch (e) {
+      return thunkAPI.rejectWithValue(e);
     }
-  } catch (e) {
-    return thunkAPI.rejectWithValue(e);
   }
-});
+);
 
 export const delMsg = createAsyncThunk("msg/del", async (thunkAPI) => {
   try {
@@ -72,32 +75,35 @@ export const delMsg = createAsyncThunk("msg/del", async (thunkAPI) => {
   }
 });
 
-export const renewMsg = createAsyncThunk("msg/renew", async (thunkAPI) => {
-  try {
-    const token = localStorage.getItem("token");
-    const response = await fetch("http://localhost:3000/message/update", {
-      method: "PUT",
-      headers: {
-        Accept: "application/json",
-        "Content-Type": "application/json",
-        token,
-        id: 10,
-      },
-      body: {
-        message: "GGGGGGGGGGGGG",
-        time: "2022-06-28 17:36:22",
-      },
-    });
-    let data = await response.json();
-    if (response.status === 200) {
-      return data;
-    } else {
-      throw data.message;
+export const renewMsg = createAsyncThunk(
+  "msg/renew",
+  async ({ id, newMessage, newTime }, thunkAPI) => {
+    try {
+      const token = localStorage.getItem("token");
+      const response = await fetch("http://localhost:3000/message/update", {
+        method: "PUT",
+        headers: {
+          Accept: "application/json",
+          "Content-Type": "application/json",
+          token,
+          id: 15,
+        },
+        body: JSON.stringify({
+          newMessage: "GGGGGGGGG",
+          newTime: "2022-06-28 17:36:22",
+        }),
+      });
+      let data = await response.json();
+      if (response.status === 200) {
+        return data;
+      } else {
+        throw data.message;
+      }
+    } catch (e) {
+      return thunkAPI.rejectWithValue(e);
     }
-  } catch (e) {
-    return thunkAPI.rejectWithValue(e);
   }
-});
+);
 export const msgSlice = createSlice({
   name: "msg",
   initialState: {
