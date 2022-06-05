@@ -52,7 +52,7 @@ export const addMsg = createAsyncThunk(
   }
 );
 
-export const delMsg = createAsyncThunk("msg/del", async (thunkAPI) => {
+export const delMsg = createAsyncThunk("msg/del", async ({ id }, thunkAPI) => {
   try {
     const token = localStorage.getItem("token");
     const response = await fetch("http://localhost:3000/message/delete", {
@@ -61,7 +61,7 @@ export const delMsg = createAsyncThunk("msg/del", async (thunkAPI) => {
         Accept: "application/json",
         "Content-Type": "application/json",
         token,
-        id: 10,
+        id,
       },
     });
     let data = await response.json();
@@ -86,11 +86,11 @@ export const renewMsg = createAsyncThunk(
           Accept: "application/json",
           "Content-Type": "application/json",
           token,
-          id: 15,
+          id,
         },
         body: JSON.stringify({
-          newMessage: "GGGGGGGGG",
-          newTime: "2022-06-28 17:36:22",
+          newMessage,
+          newTime,
         }),
       });
       let data = await response.json();
@@ -104,6 +104,37 @@ export const renewMsg = createAsyncThunk(
     }
   }
 );
+
+export const sortMsg = createAsyncThunk(
+  "msg/sort",
+  async ({ name, message, time }, thunkAPI) => {
+    try {
+      const token = localStorage.getItem("token");
+      const response = await fetch("http://localhost:3000/message/filter", {
+        method: "POST",
+        headers: {
+          Accept: "application/json",
+          "Content-Type": "application/json",
+          token,
+        },
+        body: JSON.stringify({
+          name,
+          message,
+          time,
+        }),
+      });
+      let data = await response.json();
+      if (response.status === 200) {
+        return data;
+      } else {
+        throw data.message;
+      }
+    } catch (e) {
+      return thunkAPI.rejectWithValue(e);
+    }
+  }
+);
+
 export const msgSlice = createSlice({
   name: "msg",
   initialState: {
@@ -183,6 +214,22 @@ export const msgSlice = createSlice({
     [renewMsg.rejected]: (state, { payload }) => {
       state.isFetching = false;
       state.isError = true;
+      return state;
+    },
+    [sortMsg.fulfilled]: (state, { payload }) => {
+      state.isFetching = false;
+      state.isSuccess = true;
+      state.messageList = payload.result;
+      return state;
+    },
+    [sortMsg.pending]: (state) => {
+      state.isFetching = true;
+      return state;
+    },
+    [sortMsg.rejected]: (state, { payload }) => {
+      state.isFetching = false;
+      state.isError = true;
+      console.log(payload);
       return state;
     },
   },

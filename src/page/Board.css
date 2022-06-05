@@ -1,45 +1,51 @@
-#board{
-	padding: 0;
-	margin: 0;
-	box-sizing: border-box;
+#board {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
 }
-#board .hero{
+#board .hero {
   height: 100vh;
   width: 100%;
   background: white;
 }
-#board nav{
+#board nav {
   display: flex;
   align-items: center;
   justify-content: space-between;
   padding-right: 2%;
   padding-left: 4%;
 }
-#board .logo{
+#board .logo {
   color: #d5ae7f;
   font-size: 35px;
   letter-spacing: 1px;
   cursor: pointer;
 }
-#board nav ul{
+#board nav ul {
   text-align: right;
 }
-#board nav ul .li{
+#board nav ul .li {
   list-style: none;
   display: inline-block;
   padding: 0px 25px;
 }
-#board nav ul .li a{
+#board nav ul .li a {
   color: #262728;
   text-decoration: none;
   font-size: 15px;
   font-weight: bold;
 }
-#board nav ul .li a:hover{
+#board nav ul .li button {
+  color: #262728;
+  text-decoration: none;
+  font-size: 15px;
+  font-weight: bold;
+}
+#board nav ul .li a:hover {
   color: #d5ae7f;
-  transition: .3s;
-} 
-#board header{
+  transition: 0.3s;
+}
+#board header {
   width: 92%;
   margin: 0 auto;
   padding: 13px 0;
@@ -52,46 +58,50 @@
   background: white;
   box-shadow: 0 0 30px rgb(0 0 0 / 8%);
 }
-#board .bg{
+#board .bg {
   position: absolute;
   top: 0;
   left: 0;
   width: 45%;
   height: 100%;
-  overflow: hidden
+  overflow: hidden;
 }
-#board .content{
+#board .content {
   position: absolute;
   top: 50%;
   left: 45%;
   margin: 55px 0 0 30px;
   transform: translateY(-50%);
 }
-#board .content h1{
+#board .content h1 {
   font-size: 85px;
   color: #262728;
   line-height: 110px;
   margin-bottom: 25px;
 }
-#board .content h3{
+#board .content h3 {
   color: #d5ae7f;
   font-size: 18px;
   letter-spacing: 1px;
   margin-bottom: 20px;
 }
-#board .content p{
+#board .content p {
   font-size: 14px;
   color: #585858;
   line-height: 28px;
   margin-bottom: 30px;
 }
-#board img{
+#board img {
   height: 100%;
 }
-#board .addMessage > div{
+#board .addMessage > div {
   margin-top: 20px;
   display: flex;
 }
-#board .highlight{
+#board .highlight {
   color: #d5ae7f !important;
+}
+.css-o9k5xi-MuiInputBase-root-MuiOutlinedInput-root.Mui-error
+  .MuiOutlinedInput-notchedOutline {
+  border-color: rgba(0, 0, 0, 0.23) !important;
 }

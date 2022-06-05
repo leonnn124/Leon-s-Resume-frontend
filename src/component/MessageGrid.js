@@ -36,7 +36,7 @@ const MessageGrid = (props) => {
     rangeMax = props.data.length - 1;
   }
 
-  const { isFetching, isSuccess } = useSelector(selectMsg);
+  const { isFetching } = useSelector(selectMsg);
 
   const loginMember = localStorage.getItem("member");
 

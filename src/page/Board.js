@@ -4,15 +4,17 @@ import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { allMsg, selectMsg } from "../redux/msgSlice";
 import { selectUser, clearToken } from "../redux/userSlice";
+import Button from "@mui/material/Button";
 import Pagination from "../component/Pagination";
 import AddMessage from "../component/AddMessage";
 import Skeleton from "../component/Skeleton";
+import FilterPopover from "../component/FilterPopover";
+
 const Board = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
-  const { messageList, isSuccess, isFetching } = useSelector(selectMsg);
-  const { userList } = useSelector(selectUser);
+  const { messageList, isFetching } = useSelector(selectMsg);
 
   const loginMember = localStorage.getItem("member");
   useEffect(() => {
@@ -25,6 +27,7 @@ const Board = () => {
     dispatch(clearToken());
     navigate("/login");
   };
+
   return (
     <div id="board">
       <div className="hero">
@@ -33,22 +36,22 @@ const Board = () => {
             <h2 className="logo">Message Board</h2>
             <ul>
               <li className="li">
-                <a href="#">HI {loginMember} !</a>
-              </li>
-              <li className="li">
-                <a href="#"></a>
-              </li>
-              <li className="li">
                 <a className="highlight" href="#">
-                  Message
+                  HI {loginMember} !
                 </a>
               </li>
               <li className="li">
                 <a href="#"></a>
               </li>
               <li className="li">
+                <FilterPopover />
+              </li>
+              <li className="li">
+                <a href="#"></a>
+              </li>
+              <li className="li">
                 <a href="#" onClick={() => Logout()}>
-                  Logout
+                  LOGOUT
                 </a>
               </li>
             </ul>
