@@ -3,6 +3,7 @@ import "./Login.css";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { login, selectUser, clearState } from "../redux/userSlice";
+import toast, { Toaster } from "react-hot-toast";
 
 const Login = () => {
   const [userEmail, setUserEmail] = React.useState("");
@@ -12,7 +13,7 @@ const Login = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
-  const { isSuccess } = useSelector(selectUser);
+  const { isSuccess, isError } = useSelector(selectUser);
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -37,6 +38,13 @@ const Login = () => {
   }, [isSuccess]);
 
   useEffect(() => {
+    if (isError) {
+      toast.error("帳號密碼錯誤");
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [isError]);
+
+  useEffect(() => {
     return () => {
       dispatch(clearState());
     };
@@ -44,6 +52,9 @@ const Login = () => {
   }, []);
   return (
     <div id="login">
+      <div>
+        <Toaster position="top-center" reverseOrder={false} />
+      </div>
       <form
         className="login-form"
         onSubmit={(e) => {

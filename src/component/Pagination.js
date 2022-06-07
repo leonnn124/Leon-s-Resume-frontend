@@ -16,7 +16,7 @@ const Pagination = (props) => {
   // 決定一頁放幾筆留言
   const messageCount = 5;
 
-  //取得資料長度 並整除 決定共有幾頁
+  // 取得資料長度 並整除 決定共有幾頁
   const count = Math.ceil(props.data.length / messageCount);
 
   const CssPaginate = styled(Paginate)({

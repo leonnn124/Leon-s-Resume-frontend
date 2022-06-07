@@ -28,7 +28,6 @@ const AddMessage = (props) => {
       dispatch(addMsg({ name: name, message: message, time: time }));
       dispatch(clearState());
       setMessage("");
-      dispatch(allMsg());
     }
   };
 

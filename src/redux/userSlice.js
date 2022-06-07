@@ -4,17 +4,20 @@ export const login = createAsyncThunk(
   "user/login",
   async ({ email, password }, thunkAPI) => {
     try {
-      const response = await fetch("http://localhost:3000/login", {
-        method: "POST",
-        headers: {
-          Accept: "application/json",
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          email,
-          password,
-        }),
-      });
+      const response = await fetch(
+        "https://resume-member-backend.herokuapp.com/login",
+        {
+          method: "POST",
+          headers: {
+            Accept: "application/json",
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            email,
+            password,
+          }),
+        }
+      );
       let data = await response.json();
       if (response.status === 200) {
         localStorage.setItem("token", data.result.token);
@@ -32,18 +35,21 @@ export const register = createAsyncThunk(
   "user/register",
   async ({ name, email, password }, thunkAPI) => {
     try {
-      const response = await fetch("http://localhost:3000/register", {
-        method: "POST",
-        headers: {
-          Accept: "application/json",
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          name,
-          email,
-          password,
-        }),
-      });
+      const response = await fetch(
+        "https://resume-member-backend.herokuapp.com/register",
+        {
+          method: "POST",
+          headers: {
+            Accept: "application/json",
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            name,
+            email,
+            password,
+          }),
+        }
+      );
       let data = await response.json();
       if (response.status === 200) {
         localStorage.setItem("token", data.token);
@@ -56,6 +62,34 @@ export const register = createAsyncThunk(
     }
   }
 );
+
+export const guestLogin = createAsyncThunk("user/guest", async (thunkAPI) => {
+  try {
+    const response = await fetch(
+      "https://resume-member-backend.herokuapp.com/login",
+      {
+        method: "POST",
+        headers: {
+          Accept: "application/json",
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          email: "GUEST",
+          password: "GM-xe*VG",
+        }),
+      }
+    );
+    let data = await response.json();
+    if (response.status === 200) {
+      localStorage.setItem("token", data.result.token);
+      return data;
+    } else {
+      throw data.message;
+    }
+  } catch (e) {
+    return thunkAPI.rejectWithValue(e);
+  }
+});
 
 export const userSlice = createSlice({
   name: "user",
@@ -101,6 +135,7 @@ export const userSlice = createSlice({
       state.isFetching = false;
       state.isSuccess = true;
       state.token = payload.token;
+      localStorage.setItem("member", payload.result.registerMember.name);
       return state;
     },
     [register.pending]: (state) => {
@@ -108,6 +143,22 @@ export const userSlice = createSlice({
       return state;
     },
     [register.rejected]: (state, { payload }) => {
+      state.isFetching = false;
+      state.isError = true;
+      return state;
+    },
+    [guestLogin.fulfilled]: (state, { payload }) => {
+      state.isFetching = false;
+      state.isSuccess = true;
+      state.token = payload.result.token;
+      localStorage.setItem("member", payload.result.loginMember);
+      return state;
+    },
+    [guestLogin.pending]: (state) => {
+      state.isFetching = true;
+      return state;
+    },
+    [guestLogin.rejected]: (state, { payload }) => {
       state.isFetching = false;
       state.isError = true;
       return state;

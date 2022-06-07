@@ -3,14 +3,17 @@ import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 export const allMsg = createAsyncThunk("msg/all", async (thunkAPI) => {
   try {
     const token = localStorage.getItem("token");
-    const response = await fetch("http://localhost:3000/message", {
-      method: "GET",
-      headers: {
-        Accept: "application/json",
-        "Content-Type": "application/json",
-        token,
-      },
-    });
+    const response = await fetch(
+      "https://resume-member-backend.herokuapp.com/message",
+      {
+        method: "GET",
+        headers: {
+          Accept: "application/json",
+          "Content-Type": "application/json",
+          token,
+        },
+      }
+    );
     let data = await response.json();
     if (response.status === 200) {
       return data;
@@ -27,19 +30,22 @@ export const addMsg = createAsyncThunk(
   async ({ name, message, time }, thunkAPI) => {
     try {
       const token = localStorage.getItem("token");
-      const response = await fetch("http://localhost:3000/message/add", {
-        method: "PATCH",
-        headers: {
-          Accept: "application/json",
-          "Content-Type": "application/json",
-          token,
-        },
-        body: JSON.stringify({
-          name,
-          message,
-          time,
-        }),
-      });
+      const response = await fetch(
+        "https://resume-member-backend.herokuapp.com/message/add",
+        {
+          method: "PATCH",
+          headers: {
+            Accept: "application/json",
+            "Content-Type": "application/json",
+            token,
+          },
+          body: JSON.stringify({
+            name,
+            message,
+            time,
+          }),
+        }
+      );
       let data = await response.json();
       if (response.status === 200) {
         return data;
@@ -55,15 +61,18 @@ export const addMsg = createAsyncThunk(
 export const delMsg = createAsyncThunk("msg/del", async ({ id }, thunkAPI) => {
   try {
     const token = localStorage.getItem("token");
-    const response = await fetch("http://localhost:3000/message/delete", {
-      method: "DELETE",
-      headers: {
-        Accept: "application/json",
-        "Content-Type": "application/json",
-        token,
-        id,
-      },
-    });
+    const response = await fetch(
+      "https://resume-member-backend.herokuapp.com/message/delete",
+      {
+        method: "DELETE",
+        headers: {
+          Accept: "application/json",
+          "Content-Type": "application/json",
+          token,
+          id,
+        },
+      }
+    );
     let data = await response.json();
     if (response.status === 200) {
       return data;
@@ -80,19 +89,22 @@ export const renewMsg = createAsyncThunk(
   async ({ id, newMessage, newTime }, thunkAPI) => {
     try {
       const token = localStorage.getItem("token");
-      const response = await fetch("http://localhost:3000/message/update", {
-        method: "PUT",
-        headers: {
-          Accept: "application/json",
-          "Content-Type": "application/json",
-          token,
-          id,
-        },
-        body: JSON.stringify({
-          newMessage,
-          newTime,
-        }),
-      });
+      const response = await fetch(
+        "https://resume-member-backend.herokuapp.com/message/update",
+        {
+          method: "PUT",
+          headers: {
+            Accept: "application/json",
+            "Content-Type": "application/json",
+            token,
+            id,
+          },
+          body: JSON.stringify({
+            newMessage,
+            newTime,
+          }),
+        }
+      );
       let data = await response.json();
       if (response.status === 200) {
         return data;
@@ -110,19 +122,22 @@ export const sortMsg = createAsyncThunk(
   async ({ name, message, time }, thunkAPI) => {
     try {
       const token = localStorage.getItem("token");
-      const response = await fetch("http://localhost:3000/message/filter", {
-        method: "POST",
-        headers: {
-          Accept: "application/json",
-          "Content-Type": "application/json",
-          token,
-        },
-        body: JSON.stringify({
-          name,
-          message,
-          time,
-        }),
-      });
+      const response = await fetch(
+        "https://resume-member-backend.herokuapp.com/message/filter",
+        {
+          method: "POST",
+          headers: {
+            Accept: "application/json",
+            "Content-Type": "application/json",
+            token,
+          },
+          body: JSON.stringify({
+            name,
+            message,
+            time,
+          }),
+        }
+      );
       let data = await response.json();
       if (response.status === 200) {
         return data;
@@ -140,6 +155,7 @@ export const msgSlice = createSlice({
   initialState: {
     token: "",
     messageList: [],
+    resultMessage: [],
     isFetching: false,
     isSuccess: false,
     isError: false,
@@ -177,6 +193,7 @@ export const msgSlice = createSlice({
     [addMsg.fulfilled]: (state, { payload }) => {
       state.isFetching = false;
       state.isSuccess = true;
+      state.resultMessage = payload.result;
       return state;
     },
     [addMsg.pending]: (state) => {
@@ -191,6 +208,7 @@ export const msgSlice = createSlice({
     [delMsg.fulfilled]: (state, { payload }) => {
       state.isFetching = false;
       state.isSuccess = true;
+      state.resultMessage = payload.result;
       return state;
     },
     [delMsg.pending]: (state) => {
@@ -205,6 +223,7 @@ export const msgSlice = createSlice({
     [renewMsg.fulfilled]: (state, { payload }) => {
       state.isFetching = false;
       state.isSuccess = true;
+      state.resultMessage = payload.result;
       return state;
     },
     [renewMsg.pending]: (state) => {

@@ -68,7 +68,9 @@ const MessageGrid = (props) => {
             >
               <Grid container wrap="nowrap" spacing={2}>
                 <Grid item>
-                  <Avatar>{item.name}</Avatar>
+                  <Avatar sx={{ fontSize: "12px" }}>
+                    {item.name.substring(0, 5)}
+                  </Avatar>
                 </Grid>
                 <Grid item xs>
                   {item.id !== selectId ? (
@@ -88,7 +90,7 @@ const MessageGrid = (props) => {
                 </Grid>
                 <Grid item s>
                   <Typography display="inline">{item.time}</Typography>
-                  {loginMember === item.name ? (
+                  {loginMember === item.name && loginMember !== "GUEST" ? (
                     <>
                       {item.id !== selectId ? (
                         <ModifyIcon

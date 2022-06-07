@@ -30,7 +30,6 @@ const ModifyIcon = (props) => {
         newTime: timeString,
       })
     );
-    dispatch(allMsg());
   };
 
   const deleteMessage = () => {
@@ -39,7 +38,6 @@ const ModifyIcon = (props) => {
         id: props.data.id,
       })
     );
-    dispatch(allMsg());
   };
 
   const [open, setOpen] = React.useState(false);

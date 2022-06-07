@@ -3,8 +3,7 @@ import "./Board.css";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { allMsg, selectMsg } from "../redux/msgSlice";
-import { selectUser, clearToken } from "../redux/userSlice";
-import Button from "@mui/material/Button";
+import { clearToken } from "../redux/userSlice";
 import Pagination from "../component/Pagination";
 import AddMessage from "../component/AddMessage";
 import Skeleton from "../component/Skeleton";
@@ -14,13 +13,15 @@ const Board = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
-  const { messageList, isFetching } = useSelector(selectMsg);
+  const [change, setChange] = React.useState(false);
+
+  const { messageList, resultMessage, isFetching } = useSelector(selectMsg);
 
   const loginMember = localStorage.getItem("member");
   useEffect(() => {
     dispatch(allMsg());
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  }, [change, resultMessage]);
 
   const Logout = () => {
     localStorage.clear();
@@ -63,7 +64,15 @@ const Board = () => {
         </div>
 
         <div className="content">
-          {isFetching ? <Skeleton /> : <Pagination data={messageList} />}
+          {isFetching ? (
+            <Skeleton />
+          ) : (
+            <Pagination
+              change={change}
+              setChange={setChange}
+              data={messageList}
+            />
+          )}
           <div className="addMessage">
             <AddMessage />
           </div>

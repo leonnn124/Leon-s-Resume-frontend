@@ -1,113 +1,127 @@
-#register{
-    background: url(../assets/login.jpg) no-repeat center;
-    background-size: cover;
-    min-height: 100vh;
-    display:flex;
-    align-items: center;
-    justify-content: center;
+#register {
+  background: url(../assets/login.jpg) no-repeat center;
+  background-size: cover;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 .register-form {
-    width: calc(100% - 20px);
-    max-width: 500px;
-    height: 600px;
-    background-color: #fff;
-    padding: 50px 40px;
-  }
-  
-  .register-form h1 {
-    text-align: center;
-    margin: 0 0 35px 0;
-    font-size: 36px;
-    color: #111;
-    font-size: 36px;
-  }
-  
-  .pre-page{
-    float: left;
-  }
-  
-  .textb {
-    margin-bottom: 12px;
-    position: relative;
-  }
-  
-  .textb input {
-    width: 100%;
-    height: 70px;
-    border: none;
-    background-color: #ededed;
-    border-radius: 4px;
-    color: #333;
-    font-size: 18px;
-    font-weight: 700;
-    padding: 14px 60px 0 10px;
-  }
-  
-  .placeholder {
-    text-transform: uppercase;
-    font-size: 14px;
-    font-weight: 700;
-    position: absolute;
-    line-height: 70px;
-    top: 0;
-    left: 20px;
-    color: #9d9d9d;
-    user-select: none;
-    pointer-events: none;
-  }
-  
-  .show-password {
-    position: absolute;
-    right: 20px;
-    line-height: 70px;
-    color: #9d9d9d;
-    font-size: 22px;
-    cursor: pointer;
-  }
-  
-  .textb input:focus ~ .placeholder,
-  .textb input:valid ~ .placeholder {
-    left: 10px;
-    top: -16px;
-    transition: 0.1s linear;
-  }
-  
-  .registerbtn {
-    display: block;
-    width: 100px;
-    height: 100px;
-    margin: 18px auto 40px auto;
-    background-color: #d5ae7f;
-    color: #fff;
-    font-size: 40px;
-    border: none;
-    border-radius: 30px;
-    cursor: pointer;
-    transition: 0.3s linear;
-  }
-  
-  .registerbtn:hover {
-    opacity: 0.85;
-  }
-  
-  .register-form a {
-    display: block;
-    text-align: center;
-    text-decoration: none;
-    font-size: 16px;
-    color: #555;
-    text-transform: uppercase;
-    font-weight: 500;
-    margin-bottom: 8px;
-    transition: 0.2s linear;
-  }
-  
-  .register-form a:hover {
-    color: #111;
-  }
-  
-  .registerbtn:disabled {
-    background-color: transparent;
-    color: #ddd;
-    border: 2px solid;
-  }
+  width: calc(100% - 20px);
+  max-width: 500px;
+  height: 600px;
+  background-color: #fff;
+  padding: 50px 40px;
+}
+
+.register-form h1 {
+  text-align: center;
+  margin: 0 0 35px 0;
+  font-size: 36px;
+  color: #111;
+  font-size: 36px;
+}
+
+.pre-page {
+  float: left;
+}
+
+.textb {
+  margin-bottom: 12px;
+  position: relative;
+}
+
+.textb input {
+  width: 100%;
+  height: 70px;
+  border: none;
+  background-color: #ededed;
+  border-radius: 4px;
+  color: #333;
+  font-size: 18px;
+  font-weight: 700;
+  padding: 14px 60px 0 10px;
+}
+
+.placeholder {
+  text-transform: uppercase;
+  font-size: 14px;
+  font-weight: 700;
+  position: absolute;
+  line-height: 70px;
+  top: 0;
+  left: 20px;
+  color: #9d9d9d;
+  user-select: none;
+  pointer-events: none;
+}
+
+.show-password {
+  position: absolute;
+  right: 20px;
+  line-height: 70px;
+  color: #9d9d9d;
+  font-size: 22px;
+  cursor: pointer;
+}
+
+.textb input:focus ~ .placeholder,
+.textb input:valid ~ .placeholder {
+  left: 10px;
+  top: -16px;
+  transition: 0.1s linear;
+}
+
+.registerbtn {
+  display: block;
+  width: 100px;
+  height: 100px;
+  margin: 18px auto 40px auto;
+  background-color: #d5ae7f;
+  color: #fff;
+  font-size: 40px;
+  border: none;
+  border-radius: 30px;
+  cursor: pointer;
+  transition: 0.3s linear;
+}
+
+.registerbtn:hover {
+  opacity: 0.85;
+}
+
+.register-form a {
+  display: block;
+  text-align: center;
+  text-decoration: none;
+  font-size: 16px;
+  color: #555;
+  text-transform: uppercase;
+  font-weight: 500;
+  margin-bottom: 8px;
+  transition: 0.2s linear;
+}
+
+.register-form a:hover {
+  color: #111;
+}
+
+.registerbtn:disabled {
+  background-color: transparent;
+  color: #ddd;
+  border: 2px solid;
+}
+
+#register label {
+  cursor: pointer;
+  font-size: 16px;
+  color: #555;
+  text-transform: uppercase;
+  font-weight: 500;
+  margin-bottom: 8px;
+  transition: 0.2s linear;
+}
+
+#register {
+  text-align: center;
+}

@@ -2,7 +2,13 @@ import React, { useEffect } from "react";
 import "./Register.css";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { register, selectUser, clearState } from "../redux/userSlice";
+import {
+  register,
+  selectUser,
+  clearState,
+  guestLogin,
+} from "../redux/userSlice";
+import toast, { Toaster } from "react-hot-toast";
 
 const Register = () => {
   const [userName, setuserName] = React.useState("");
@@ -13,13 +19,17 @@ const Register = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
-  const { isSuccess } = useSelector(selectUser);
+  const { isSuccess, isError } = useSelector(selectUser);
 
   const handleSubmit = (e) => {
     e.preventDefault();
     dispatch(
       register({ name: userName, email: userEmail, password: passWord })
     );
+  };
+
+  const handleGuestLogin = () => {
+    dispatch(guestLogin());
   };
 
   if (disabled === true) {
@@ -40,6 +50,13 @@ const Register = () => {
   }, [isSuccess]);
 
   useEffect(() => {
+    if (isError) {
+      toast.error("格式錯誤或已註冊");
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [isError]);
+
+  useEffect(() => {
     return () => {
       dispatch(clearState());
     };
@@ -48,6 +65,9 @@ const Register = () => {
 
   return (
     <div id="register">
+      <div>
+        <Toaster position="top-center" reverseOrder={false} />
+      </div>
       <form
         className="login-form"
         onSubmit={(e) => {
@@ -99,7 +119,8 @@ const Register = () => {
           disabled={disabled}
           type="submit"
         ></button>
-        <a href="/board">Login As Guest</a>
+
+        <label onClick={handleGuestLogin}>Login As Guest</label>
       </form>
     </div>
   );
