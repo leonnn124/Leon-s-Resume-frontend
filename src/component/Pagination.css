@@ -1,8 +1,9 @@
 li {
   padding: 0;
 }
-.paginate nav {
+.paginate > nav {
   align-items: center;
   display: flex;
   justify-content: space-between;
+  align-items: center;
 }
