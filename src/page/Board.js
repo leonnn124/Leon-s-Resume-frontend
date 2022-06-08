@@ -33,7 +33,7 @@ const Board = () => {
     <div id="board">
       <div className="hero">
         <header>
-          <nav>
+          <nav className="navHome">
             <h2 className="logo">Message Board</h2>
             <ul>
               <li className="li">

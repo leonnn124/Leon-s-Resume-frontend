@@ -8,7 +8,7 @@
   width: 100%;
   background: white;
 }
-#board nav {
+#board .navHome {
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -21,27 +21,27 @@
   letter-spacing: 1px;
   cursor: pointer;
 }
-#board nav ul {
+#board .navHome ul {
   text-align: right;
 }
-#board nav ul .li {
+#board .navHome ul .li {
   list-style: none;
   display: inline-block;
   padding: 0px 25px;
 }
-#board nav ul .li a {
+#board .navHome ul .li a {
   color: #262728;
   text-decoration: none;
   font-size: 15px;
   font-weight: bold;
 }
-#board nav ul .li button {
+#board .navHome ul .li button {
   color: #262728;
   text-decoration: none;
   font-size: 15px;
   font-weight: bold;
 }
-#board nav ul .li a:hover {
+#board .navHome ul .li a:hover {
   color: #d5ae7f;
   transition: 0.3s;
 }
