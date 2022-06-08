@@ -7,7 +7,9 @@ const Home = () => {
       <div>
         <nav className="navbar fixed bg-transparent w-full py-4 z-50">
           <div className="inner-width flex items-center justify-between top-0">
-            <a href="#" className="Logo w-16 h-11 bg-no-repeat z-50"></a>
+            <a href="/" className="Logo w-16 h-11 bg-no-repeat z-50">
+              {null}
+            </a>
             <button className="md:hidden bars block bg-none w-7 border-0 cursor-pointer relative outline-none z-50">
               <span className="bars block h-0.5 bg-golden my-1 relative"></span>
               <span className="bars block h-0.5 bg-golden my-1 relative"></span>
@@ -15,37 +17,37 @@ const Home = () => {
             </button>
             <div className="navbar-menu font-normal active">
               <a
-                href="#About"
+                href="/"
                 className="text-base ml-7 text-golden font-medium hover:text-orange-100 active"
               >
                 ABOUT
               </a>
               <a
-                href="#Experiences"
+                href="/"
                 className="text-base ml-7 text-golden font-medium hover:text-orange-100 active"
               >
                 EXPERIENCES
               </a>
               <a
-                href="#Project"
+                href="/"
                 className="text-base ml-7 text-golden font-medium hover:text-orange-100 active"
               >
                 PROJECT
               </a>
               <a
-                href="#Education"
+                href="/"
                 className="text-base ml-7 text-golden font-medium hover:text-orange-100 active"
               >
                 EDUCATION
               </a>
               <a
-                href="#Skills"
+                href="/"
                 className="text-base ml-7 text-golden font-medium hover:text-orange-100 active"
               >
                 SKILLS
               </a>
               <a
-                href="#Abilities"
+                href="/"
                 className="text-base ml-7 text-golden font-medium hover:text-orange-100 active"
               >
                 ABILITIES
@@ -61,25 +63,35 @@ const Home = () => {
               </h1>
               <div className="sm w-full">
                 <a
-                  href="#"
+                  href="/"
                   className="text-xl my-3 mx-3 text-golden font-medium hover:text-orange-100 fab fa-facebook-f"
-                ></a>
+                >
+                  {null}
+                </a>
                 <a
-                  href="#"
+                  href="/"
                   className="text-xl my-3 mx-3 text-golden font-medium hover:text-orange-100 fab fa-twitter"
-                ></a>
+                >
+                  {null}
+                </a>
                 <a
-                  href="#"
+                  href="/"
                   className="text-xl my-3 mx-3 text-golden font-medium hover:text-orange-100 fab fa-instagram"
-                ></a>
+                >
+                  {null}
+                </a>
                 <a
-                  href="#"
+                  href="/"
                   className="text-xl my-3 mx-3 text-golden font-medium hover:text-orange-100 fab fa-linkedin-in"
-                ></a>
+                >
+                  {null}
+                </a>
                 <a
-                  href="#"
+                  href="/"
                   className="text-xl my-3 mx-3 text-golden font-medium hover:text-orange-100 fab fa-youtube"
-                ></a>
+                >
+                  {null}
+                </a>
               </div>
             </div>
           </div>
@@ -545,25 +557,35 @@ const Home = () => {
               <div className="icon">
                 <div className="sm w-full text-center pt-10 pb-6">
                   <a
-                    href="#"
+                    href="/"
                     className="text-xl my-3 mx-3 text-golden font-medium hover:text-orange-100 fab fa-facebook-f"
-                  ></a>
+                  >
+                    {null}
+                  </a>
                   <a
-                    href="#"
+                    href="/"
                     className="text-xl my-3 mx-3 text-golden font-medium hover:text-orange-100 fab fa-twitter"
-                  ></a>
+                  >
+                    {null}
+                  </a>
                   <a
-                    href="#"
+                    href="/"
                     className="text-xl my-3 mx-3 text-golden font-medium hover:text-orange-100 fab fa-instagram"
-                  ></a>
+                  >
+                    {null}
+                  </a>
                   <a
-                    href="#"
+                    href="/"
                     className="text-xl my-3 mx-3 text-golden font-medium hover:text-orange-100 fab fa-linkedin-in"
-                  ></a>
+                  >
+                    {null}
+                  </a>
                   <a
-                    href="#"
+                    href="/"
                     className="text-xl my-3 mx-3 text-golden font-medium hover:text-orange-100 fab fa-youtube"
-                  ></a>
+                  >
+                    {null}
+                  </a>
                 </div>
               </div>
               <div className="info pb-10">
