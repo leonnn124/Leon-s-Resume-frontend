@@ -25,7 +25,7 @@ const Pagination = (props) => {
     },
   });
   return (
-    <Stack spacing={2} sx={{ height: "520px" }}>
+    <Stack spacing={2}>
       <Typography component={"span"} sx={{ height: "100%" }}>
         <MessageGrid
           data={props.data}

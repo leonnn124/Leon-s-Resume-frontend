@@ -101,7 +101,6 @@
 #board .highlight {
   color: #d5ae7f !important;
 }
-.css-o9k5xi-MuiInputBase-root-MuiOutlinedInput-root.Mui-error
-  .MuiOutlinedInput-notchedOutline {
+.css-1bn53lx.Mui-error .MuiOutlinedInput-notchedOutline {
   border-color: rgba(0, 0, 0, 0.23) !important;
 }
