@@ -15,6 +15,7 @@ const AddMessage = (props) => {
 
   useEffect(() => {
     dispatch(allMsg());
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   useEffect(() => {

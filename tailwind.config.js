@@ -1,3 +1,5 @@
+const webpack = require("webpack");
+
 module.exports = {
   content: ["./src/**/*.{js,jsx,ts,tsx}"],
   theme: {

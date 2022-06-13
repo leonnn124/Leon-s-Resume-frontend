@@ -37,21 +37,21 @@ const Board = () => {
             <h2 className="logo">Message Board</h2>
             <ul>
               <li className="li">
-                <a className="highlight" href="#">
+                <a className="highlight" href="/ ">
                   HI {loginMember} !
                 </a>
               </li>
               <li className="li">
-                <a href="#"></a>
+                <a href="# ">{null}</a>
               </li>
               <li className="li">
                 <FilterPopover />
               </li>
               <li className="li">
-                <a href="#"></a>
+                <a href="# ">{null}</a>
               </li>
               <li className="li">
-                <a href="#" onClick={() => Logout()}>
+                <a href="# " onClick={() => Logout()}>
                   LOGOUT
                 </a>
               </li>
@@ -60,7 +60,7 @@ const Board = () => {
         </header>
 
         <div className="bg">
-          <img src={require("../assets/main.jpg")} />
+          <img src={require("../assets/main.jpg")} alt="" />
         </div>
 
         <div className="content">

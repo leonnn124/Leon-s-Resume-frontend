@@ -111,7 +111,7 @@ button .bars,
   display: block;
   content: " ";
   width: 5px;
-  height: 80%;
+  height: 70%;
   margin-left: -2.5px;
   margin-top: 56px;
   z-index: 5;
@@ -341,7 +341,7 @@ hr {
 
 @screen p {
   #About {
-    min-height: 500px;
+    min-height: 600px;
   }
 }
 

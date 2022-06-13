@@ -1,7 +1,62 @@
-import React from "react";
+/* eslint-disable jsx-a11y/anchor-is-valid */
+/* eslint-disable jsx-a11y/anchor-has-content */
 import "./Home.css";
-
+import $ from "jquery";
+import React, { useEffect } from "react";
+import OwlCarousel from "react-owl-carousel2";
+import "react-owl-carousel2/lib/styles.css";
+import "react-owl-carousel2/src/owl.theme.default.css";
 const Home = () => {
+  useEffect(() => {
+    $(".bars").click(function () {
+      $(this).toggleClass("close");
+      if ($(this).hasClass("close")) {
+        $(".navbar-menu").css("right", "0");
+      } else $(".navbar-menu").css("right", "-100%");
+    });
+    $(window).scroll(function () {
+      if (this.scrollY > 20) $(".navbar").addClass("stick");
+      else $(".navbar").removeClass("stick");
+      $(".hideme").each(function () {
+        var bottom_of_object = $(this).offset().top; // + $(this).outerHeight()
+        var bottom_of_window = $(window).scrollTop() + $(window).height();
+        if (bottom_of_window > bottom_of_object) {
+          $(this).animate({ opacity: "0.7" }, 1500);
+        }
+      });
+      $(".hidemid").each(function () {
+        var bottom_of_object = $(this).offset().top + $(this).outerHeight() / 2;
+        var bottom_of_window = $(window).scrollTop() + $(window).height();
+        if (bottom_of_window > bottom_of_object) {
+          $(this).animate({ opacity: "0.9" }, 500);
+        }
+      });
+      $(".hides").each(function () {
+        var bottom_of_object = $(this).offset().top + $(this).outerHeight();
+        var bottom_of_window = $(window).scrollTop() + $(window).height();
+        if (bottom_of_window > bottom_of_object) {
+          $(this).animate({ opacity: "0.9" }, 1000);
+        }
+      });
+    });
+  }, []);
+  const options = {
+    items: 2,
+    loop: true,
+    margin: 10,
+    autoplay: true,
+    autoplayTimeout: 3500,
+    autoplayHoverPause: true,
+    smartSpeed: 2000,
+    responsive: {
+      0: {
+        items: 1,
+      },
+      1105: {
+        items: 2,
+      },
+    },
+  };
   return (
     <div>
       <div>
@@ -96,7 +151,7 @@ const Home = () => {
             </div>
           </div>
         </section>
-        {/* <section id="About">
+        <section id="About">
           <div className="inner-width">
             <h1 className="section-title text-center pt-12 pb-4 relative text-2xl text-golden">
               ABOUT
@@ -104,12 +159,14 @@ const Home = () => {
             <div className="divider rounded-md border-t-4 border-neutral-300 border-solid m-auto mb-12"></div>
             <div className="about-content flex item-center flex-wrap pt-12">
               <img
-                src="../assets/Leon.jpg"
+                src={require("../assets/Leon.jpg")}
                 alt=""
                 className="about-pic w-48 md:rounded-xl mx-12 max-h-64 -md:rounded-full -md:h-24 -md:w-24"
               />
               <div className="about-text md:flex-1 mx-12">
-                <h2 className="text-2xl pb-4 text-neutral-400">Hi ! I'm Leon</h2>
+                <h2 className="text-2xl pb-4 text-neutral-400">
+                  Hi ! I'm Leon
+                </h2>
                 <p className="text-lg text-justify justify-between flex-wrap mb-10">
                   就讀於國立台中科技大學，對於前端有相當大的興趣，喜歡研究新技術應用在自己的作品中，即便遇到挫折也不會輕易放棄。
                   <br />
@@ -180,7 +237,7 @@ const Home = () => {
                   </div>
                 </div>
               </div>
-              <div className="timeline-item px-2 pl-1 pr-14 float-left mb-8 -mr-3 ml-auto w-full">
+              {/* <div className="timeline-item px-2 pl-1 pr-14 float-left mb-8 -mr-3 ml-auto w-full">
                 <div className="container mt-0 float-left w-1/2 relative pr-10 pl-0 text-right timeline-box-right">
                   <div className="table w-full box-border md:text-right">
                     <h3 className="text-golden">...</h3>
@@ -195,7 +252,7 @@ const Home = () => {
                     Future ...
                   </div>
                 </div>
-              </div>
+              </div> */}
             </div>
           </div>
         </section>
@@ -205,10 +262,17 @@ const Home = () => {
               Project
             </h1>
             <div className="divider rounded-md border-t-4 border-neutral-300 border-solid m-auto mb-12"></div>
-            <div className="project owl-sm:mt-28 owl-carousel owl-theme mt-14">
+            <OwlCarousel
+              options={options}
+              className="project owl-sm:mt-28 owl-carousel owl-theme mt-14"
+            >
               <div className="pro-item owl-sm:flex h-72">
                 <div className="pro-img w-3/12 owl-sm:m-2 mx-auto">
-                  <img src="../assets/mono.png" alt="" className="h-32 w-24 m-2" />
+                  <img
+                    src={require("../assets/mono.png")}
+                    alt=""
+                    className="h-32 w-24 m-2"
+                  />
                 </div>
 
                 <div className="pro-text owl-sm:m-4 w-9/12 mx-auto -owl-lg:text-center">
@@ -237,7 +301,11 @@ const Home = () => {
               </div>
               <div className="pro-item owl-sm:flex owl-sm:h-72">
                 <div className="pro-img w-3/12 owl-sm:m-2 mx-auto">
-                  <img src="../assets/whEat.png" alt="" className="h-32 w-24 m-2" />
+                  <img
+                    src={require("../assets/whEat.png")}
+                    alt=""
+                    className="h-32 w-24 m-2"
+                  />
                 </div>
 
                 <div className="pro-text owl-sm:m-4 w-9/12 mx-auto -owl-lg:text-center">
@@ -270,7 +338,7 @@ const Home = () => {
               <div className="pro-item owl-sm:flex h-72">
                 <div className="pro-img w-3/12 owl-sm:m-2 mx-auto">
                   <img
-                    src="../assets/blindstar.png"
+                    src={require("../assets/blindstar.png")}
                     alt=""
                     className="h-32 w-24 m-2 rounded-2xl"
                   />
@@ -303,7 +371,7 @@ const Home = () => {
                   </div>
                 </div>
               </div>
-            </div>
+            </OwlCarousel>
           </div>
         </section>
         <section id="Education">
@@ -315,8 +383,8 @@ const Home = () => {
           </div>
           <div className="edu-content text-center">
             <div className="hideme text-2xl my-28">
-              <span className="text-golden">National Taichung University</span> of
-              Science and Technology.
+              <span className="text-golden">National Taichung University</span>{" "}
+              of Science and Technology.
             </div>
             <div className="hideme my-20">Sep. 2018 - Jun. 2022</div>
             <div className="hideme text-xl">
@@ -355,9 +423,10 @@ const Home = () => {
                   <div className="ski-item flex justify-between items-center mx-auto">
                     <i className="w-1/3">
                       <img
-                        src="../assets/tailwind.png"
+                        src={require("../assets/tailwind.png")}
                         className="mx-auto"
-                        style="width: 20px; height: 20px"
+                        style={{ width: "20px", height: "20px" }}
+                        alt=""
                       />
                     </i>
                     <p className="content text-white text-md w-2/3 text-left ml-3.5">
@@ -386,9 +455,10 @@ const Home = () => {
                   <div className="ski-item flex justify-between items-center mx-auto">
                     <i className="w-1/3">
                       <img
-                        src="../assets/jq.png"
+                        src={require("../assets/jq.png")}
                         className="mx-auto"
-                        style="width: 16px; height: 16px"
+                        style={{ width: "16px", height: "16px" }}
+                        alt=""
                       />
                     </i>
                     <p className="content text-white text-md w-2/3 text-left ml-3.5">
@@ -410,9 +480,10 @@ const Home = () => {
                   <div className="ski-item flex justify-between items-center mx-auto">
                     <i className="w-1/3">
                       <img
-                        src="../assets/axios.png"
+                        src={require("../assets/axios.png")}
                         className="mx-auto"
-                        style="width: 20px; height: 20px"
+                        style={{ width: "20px", height: "20px" }}
+                        alt=""
                       />
                     </i>
                     <p className="content text-white text-md w-2/3 text-left ml-3.5">
@@ -431,9 +502,10 @@ const Home = () => {
                   <div className="ski-item flex justify-between items-center mx-auto">
                     <i className="w-1/3">
                       <img
-                        src="../assets/django.png"
+                        src={require("../assets/django.png")}
                         className="mx-auto"
-                        style="width: 20px; height: 20px"
+                        style={{ width: "20px", height: "20px" }}
+                        alt=""
                       />
                     </i>
                     <p className="content text-white text-md w-2/3 text-left ml-3.5">
@@ -469,9 +541,10 @@ const Home = () => {
                   <div className="ski-item flex justify-between items-center mx-auto">
                     <i className="w-1/3">
                       <img
-                        src="../assets/vsc.png"
+                        src={require("../assets/vsc.png")}
                         className="mx-auto"
-                        style="width: 16px; height: 16px"
+                        style={{ width: "16px", height: "16px" }}
+                        alt=""
                       />
                     </i>
                     <p className="content text-white text-md w-2/3 text-left ml-3.5">
@@ -506,9 +579,10 @@ const Home = () => {
                   <div className="ski-item flex justify-between items-center mx-auto">
                     <i className="w-1/3">
                       <img
-                        src="../assets/sql.png"
+                        src={require("../assets/sql.png")}
                         className="mx-auto"
-                        style="width: 20px; height: 20px"
+                        style={{ width: "20px", height: "20px" }}
+                        alt=""
                       />
                     </i>
                     <p className="content text-white text-md w-2/3 text-left ml-3.5">
@@ -550,7 +624,7 @@ const Home = () => {
               </div>
             </div>
           </div>
-        </section>*/}
+        </section>
         <footer className="bg-neutral-900">
           <div className="inner-width my-10">
             <div className="contacts">

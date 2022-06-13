@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import "./MessageGrid.css";
 import { useDispatch, useSelector } from "react-redux";
-import { selectMsg, clearState, allMsg } from "../redux/msgSlice";
+import { selectMsg, clearState } from "../redux/msgSlice";
 import { styled } from "@mui/material/styles";
 import Box from "@mui/material/Box";
 import Paper from "@mui/material/Paper";
@@ -47,6 +47,7 @@ const MessageGrid = (props) => {
       copy.push(props.data[i]);
     }
     setMessageData(copy);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [props.page, props.data]);
 
   return (

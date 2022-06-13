@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 import "./Pagination.css";
 import { styled } from "@mui/material/styles";
 import Typography from "@mui/material/Typography";

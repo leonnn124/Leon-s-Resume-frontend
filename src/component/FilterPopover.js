@@ -10,10 +10,8 @@ import Paper from "@mui/material/Paper";
 import InputBase from "@mui/material/InputBase";
 import IconButton from "@mui/material/IconButton";
 import SearchIcon from "@mui/icons-material/Search";
-import getTime from "../services/date";
-import { useDispatch, useSelector } from "react-redux";
-import { selectMsg, sortMsg } from "../redux/msgSlice";
-import { times } from "lodash";
+import { useDispatch } from "react-redux";
+import { sortMsg } from "../redux/msgSlice";
 
 const FilterPopover = () => {
   const dispatch = useDispatch();
